@@ -25,10 +25,16 @@ public class PostController {
     private Post post;
     private User user;
     private BindingResult result;
-//    private Model model;
 
 
-
+    /**
+     * This method can be used to create a post
+     * @param formData
+     * @param post
+     * @param result
+     * @param session
+     * @return
+     */
     @PostMapping("/Create_post")
     public String createPost(@RequestParam HashMap<String, String> formData, @Valid Post post, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
@@ -36,15 +42,21 @@ public class PostController {
         }
         post = new Post();
         user = (User) session.getAttribute("user");
-        System.out.println(user.getId());
         post.setUser_id(user.getId());
         post.setPost_date();
         post.setPost_text(formData.get("text"));
-        System.out.println(post);
         postService.SavePostData(post);
         return "redirect:/posts";
     }
 
+    /**
+     * This method can be used to delete a post
+     * @param formData
+     * @param post
+     * @param result
+     * @param session
+     * @return
+     */
     @PostMapping("/Delete_post")
     public String deletePost(@RequestParam HashMap<String, String> formData, @Valid Post post, BindingResult result, HttpSession session) {
         if (result.hasErrors()) {
@@ -55,6 +67,14 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    /**
+     * This method can be used to update a post
+     * @param formData
+     * @param post
+     * @param result
+     * @param session
+     * @return
+     */
     @PostMapping("/Update_post")
     public String updatePost(@RequestParam HashMap<String, String> formData, @Valid Post post, BindingResult result, HttpSession session) {
         System.out.println("Helloo from controller ");
@@ -71,6 +91,14 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    /**
+     * This method can be used to like a post
+     * @param formData
+     * @param post
+     * @param result
+     * @param session
+     * @return
+     */
     @PostMapping("/Like_post")
     public String likePost(@RequestParam HashMap<String, String> formData, @Valid Post post, BindingResult result, HttpSession session) {
         System.out.println("like");
@@ -81,6 +109,14 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    /**
+     * This method can be used to dislike a post
+     * @param formData
+     * @param post
+     * @param result
+     * @param session
+     * @return
+     */
     @PostMapping("/Dislike_post")
     public String dislikePost(@RequestParam HashMap<String, String> formData, @Valid Post post, BindingResult result, HttpSession session) {
         System.out.println("Dislike");
