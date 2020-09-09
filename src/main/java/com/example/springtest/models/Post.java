@@ -21,6 +21,10 @@ public class Post {
     private String post_date;
     private String post_text;
 
+    /**
+     * This method converts the java util date to a
+     * string in the sql date form.
+     */
     public void setPost_date() {
         Date date = new Date();
         String res = "";
