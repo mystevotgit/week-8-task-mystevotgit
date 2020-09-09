@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <title>Facebook - log in and sign up</title>
+    <meta charset="utf-8">
+    <link rel='stylesheet' th:href=@{main.css} type='text/css'>
+</head>
+<body>
+<header>
+    <div class="logo">facebook</div>
+    <div class="container">
+        <form action="#" th:action="@{/login}" th:object="${user}" method="post" class="formulaire">
+            <div class="userMail">
+                <label for="email">Email</label>
+                <input type="email" th:field="*{email}" name="email" id="email" />
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+            <div class="password">
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}" name="password" id="password" />
+            </div>
+            <input type="submit" value="Login" class="btn" />
+        </form>
+        <div class="forgot"><a href="#">Forgot account?</a></div>
+    </div>
+</header>
+
+
+<div class="left">
+    <h2 class="connect">Connect with friends and the
+        <br>
+        world around you on Facebook.</h2>
+    <ul class="center_list">
+        <li class="list">
+            <img class="img-list" src="https://fb-s-d-a.akamaihd.net/h-ak-xft1/v/t39.2365-6/851565_602269956474188_918638970_n.png?oh=894e994a5ae3ec3434da54fe42e31e72&oe=5971E6F5&__gda__=1500718098_effe0b8bd493ae0c23cc14fa99bda630">
+            <big>See photos and updates</big> <small>from friends in News Feed.</small>
+        </li>
+        <li class="list">
+            <img class="img-list" src="https://fb-s-c-a.akamaihd.net/h-ak-xaf1/v/t39.2365-6/851585_216271631855613_2121533625_n.png?oh=ae821220803265e80c0c261997b83a1b&oe=59295120&__gda__=1499782408_8fd3d0bad1815952ce6195f4e9c363df">
+            <big>Share what's new</big> <small>in your life on your Timeline.</small>
+        </li>
+        <li class="list">
+            <img class="img-list last" src="https://fb-s-b-a.akamaihd.net/h-ak-xft1/v/t39.2365-6/851558_160351450817973_1678868765_n.png?oh=8de3304d724a879592bcc3fe9f967dcd&oe=5959B4D8&__gda__=1499970870_5087f0141d0ed913a7092687c8c10213">
+            <big>Find more</big> <small>of what you're looking for with Facebook Search.</small>
+        </li>
+    </ul>
+</div>
+<div class="right">
+    <br>
+
+    <h1 class="signUp">Sign Up</h1>
+    <h4 class="signUpSub">It’s free and always will be.</h4>
+
+
+
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post">
+        <div class="inputs">
+            <input type="text" class="input input_1" th:field="*{firstname}" name="firstname" placeholder="First name">
+            <input type="text" class="input input_1" th:field="*{lastname}" name="lastname" placeholder="Last name">
+            <br>
+            <input type="text" class="input input_2" th:field="*{email}" name="email" placeholder="Email">
+            <br>
+
+            <br>
+            <input type="password" class="input input_2" th:field="*{password}" name="password" placeholder="New password">
+        </div>
+        <div>
+            <h4>Birthday</h4>
+            <input type="date" class="input input_2" th:field="*{dob}" name="dob">
+        </div>
+        <div style="margin-top: 20px;">
+            <input id="female" name="gender" type="radio" value="Female">
+            <label class="female" for="female">Female</label>
+            <input id="male" name="gender" type="radio" value="Male">
+            <label class="male" for="male">Male</label>
+        </div>
+        <div class="terms">
+            <p>By clicking Sign Up, you agree to our <a href="#" class="terms_a">Terms</a> and that you have read our <a href="#" class="terms_a">Data Policy</a>, including our <a href="#" class="terms_a">Cookie Use</a>.</p>
+        </div>
+        <div>
+            <input type="submit" class="signUpBtn" name="submit">
+        </div>
+    </form>
+    <div class="formbox">
+        <div class="create"><a href="">Create a Page</a> for a celebrity, band or business.</div>
+    </div>
+</div>
+</body>
+</html>

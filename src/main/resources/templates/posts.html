@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <title>Facebook - Home</title>
+    <meta charset="utf-8">
+    <link rel='stylesheet' th:href=@{main.css} type='text/css'>
+</head>
+<body>
+<header>
+    <div class="logo">facebook</div>
+    <div class="container">
+        <h3 th:text="${user.firstname}"></h3>
+        <br>
+        <a class='btn' th:href="@{/logout}">Log Out</a>
+    </div>
+</header>
+<div class="contain">
+    <div class="body">
+        <br>
+        <h2>Write a post</h2>
+        <form action="#" th:action="@{/Create_post}" method="post">
+            <textarea class="text-post"  name="text" id="text" cols="30" rows="10"></textarea>
+            <input type="submit" value="Publish Post" class="btn">
+        </form>
+        <br>
+        <h2>Posts</h2>
+        <br>
+        <div th:switch="${posts}">
+            <h5 th:case="${null}">You do not have any post yet... You can create a new post now.</h5>
+            <div th:case="*">
+                <div th:each="post: ${posts}">
+                    <div class="post">
+                        <h6 th:text="${post.user_id}"></h6>
+                        <h5 class='date' th:text="${post.post_date}"></h5>
+                        <p class='post-text' th:text="${post.post_text}"></p>
+                        <form action="#" th:action="@{/Like_post}" method="post">
+                            <button type="submit" class="btn" name="like" th:value="${post.id}">Like</button>
+                        </form>
+                        <p class='like-val' name='likes' value>0</p>
+                        <form action="#" th:action="@{/Dislike_post}" method="post">
+                            <button type="submit" class="btn" name="like" th:value="${post.id}">Unlike</button>
+                        </form>
+                        <form action="#" th:action="@{/Delete_post}" method="post">
+                            <button type="submit" class="delete" name="delete" th:value="${post.id}">Delete</button>
+                        </form>
+                        <form class='updatepost' action="#" th:action="@{/Update_post}" method='post'>
+                            <textarea class="edit-post" name="text" cols="30" rows="10"></textarea>
+                            <button class='updatetext btn' name='update' th:value="${post.id}">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
