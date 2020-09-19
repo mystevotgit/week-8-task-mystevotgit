@@ -27,8 +27,6 @@ public class AuthGetController {
     UserService userService;
 
     private Post post;
-
-
     private User user;
     private BindingResult result;
     private Model model;

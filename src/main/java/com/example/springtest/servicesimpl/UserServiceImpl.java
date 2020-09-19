@@ -14,11 +14,20 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * This implementation method saves a user in the database
+     * @param user
+     */
     @Override
     public void SaveUserData(User user) {
         userRepository.save(user);
     }
 
+    /**
+     * This implementation method fetches a user from the database
+     * @param email
+     * @return
+     */
     @Override
     public List<User> FindUserData(String email) {
         return userRepository.findByEmail(email);
